@@ -36,8 +36,8 @@ def csrf(app, on_csrf=None):
         if app.config.get('TESTING'):
             return
         if not g._csrf_exempt:
-            if request.method == "POST":
-                csrf_token = session.pop('_csrf_token', None)
+            if request.method == "POST" or request.method == 'PUT' or request.method == 'DELETE':
+                csrf_token = session['_csrf_token']
                 if not csrf_token or csrf_token != request.form.get('_csrf_token'):
                     if on_csrf:
                         on_csrf(*app.match_request())
