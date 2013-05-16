@@ -38,7 +38,11 @@ def csrf(app, on_csrf=None):
         if not g._csrf_exempt:
             if request.method == "POST" or request.method == 'PUT' or request.method == 'DELETE':
                 csrf_token = session['_csrf_token']
-                if not csrf_token or csrf_token != request.form.get('_csrf_token'):
+                if request.form.get("_csrf_token") and csrf_token == request.form.get('_csrf_token'):
+                    return
+                elif request.args.get("_csrf_token") and csrf_token == request.args.get('_csrf_token'):
+                    return
+                else
                     if on_csrf:
                         on_csrf(*app.match_request())
                     abort(400)
