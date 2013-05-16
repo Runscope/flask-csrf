@@ -37,6 +37,8 @@ def csrf(app, on_csrf=None):
             return
         if not g._csrf_exempt:
             if request.method == "POST" or request.method == 'PUT' or request.method == 'DELETE':
+                if '_csrf_token' not in session:
+                    session['_csrf_token'] = str(uuid4())
                 csrf_token = session['_csrf_token']
                 if request.form.get("_csrf_token") and csrf_token == request.form.get('_csrf_token'):
                     return
