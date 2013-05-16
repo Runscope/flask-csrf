@@ -2,10 +2,10 @@
 flask-csrf
 ----------
 
-A small Flask extension for adding CSRF protection.
+A small Flask extension for adding CSRF protection. Runscope fork.
 
-Links
-`````
+Original Links
+``````````````
 
 * `documentation <http://sjl.bitbucket.org/flask-csrf/>`_
 * `development version
@@ -18,11 +18,11 @@ from setuptools import setup
 
 setup(
     name='flask-csrf',
-    version='0.9.2',
-    url='http://sjl.bitbucket.org/flask-csrf/',
+    version='0.9.2.1',
+    url='https://github.com/Runscope/flask-csrf',
     license='MIT',
-    author='Steve Losh',
-    author_email='steve@stevelosh.com',
+    author='Ryan Park',
+    author_email='ryan@runscope.com',
     description='A small Flask extension for adding CSRF protection.',
     long_description=__doc__,
     packages=['flaskext'],
