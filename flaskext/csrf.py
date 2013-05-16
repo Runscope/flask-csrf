@@ -42,7 +42,7 @@ def csrf(app, on_csrf=None):
                     return
                 elif request.args.get("_csrf_token") and csrf_token == request.args.get('_csrf_token'):
                     return
-                else
+                else:
                     if on_csrf:
                         on_csrf(*app.match_request())
                     abort(400)
