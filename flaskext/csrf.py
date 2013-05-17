@@ -37,12 +37,12 @@ def csrf(app, on_csrf=None):
             return
         if not g._csrf_exempt:
             if request.method == "POST" or request.method == 'PUT' or request.method == 'DELETE':
-                if '_csrf_token' not in session:
-                    session['_csrf_token'] = str(uuid4())
-                csrf_token = session['_csrf_token']
-                if request.form.get("_csrf_token") and csrf_token == request.form.get('_csrf_token'):
+                if '_ct' not in session:
+                    session['_ct'] = str(uuid4())
+                csrf_token = session['_ct']
+                if request.form.get("_ct") and csrf_token == request.form.get('_ct'):
                     return
-                elif request.args.get("_csrf_token") and csrf_token == request.args.get('_csrf_token'):
+                elif request.args.get("_ct") and csrf_token == request.args.get('_ct'):
                     return
                 else:
                     if on_csrf:
@@ -50,8 +50,8 @@ def csrf(app, on_csrf=None):
                     abort(400)
     
     def generate_csrf_token():
-        if '_csrf_token' not in session:
-            session['_csrf_token'] = str(uuid4())
-        return session['_csrf_token']
+        if '_ct' not in session:
+            session['_ct'] = str(uuid4())
+        return session['_ct']
     
     app.jinja_env.globals['csrf_token'] = generate_csrf_token
