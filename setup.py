@@ -18,7 +18,7 @@ from setuptools import setup
 
 setup(
     name='flask-csrf',
-    version='0.9.2-runscope1',
+    version='0.9.2.1',  # customized for Runscope
     url='https://github.com/Runscope/flask-csrf',
     license='MIT',
     author='Ryan Park',
